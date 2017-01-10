@@ -13,11 +13,13 @@ class Job < ApplicationRecord
     self.is_hidden = true
     self.save
   end
-end
-class Job < ApplicationRecord
-  scope :published, -> { where(is_hidden: false) }
-end
 
-class Job < ApplicationRecord
+
+  scope :published, -> { where(is_hidden: false) }
+
+
   scope :recent, -> { order('created_at DESC') }
+
+
+  has_many :resumes
 end
