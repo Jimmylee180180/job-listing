@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
+  #devise_for :admins
   devise_for :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  resources :jobs
-  root 'jobs#index'
+  resources :jobs do
+   resources :resumes
+ end
 
   namespace :admin do
       resources :jobs do
@@ -10,8 +12,10 @@ Rails.application.routes.draw do
           post :publish
           post :hide
         end
-
         resources :resumes
       end
     end
+
+  root 'jobs#index'
+
   end
